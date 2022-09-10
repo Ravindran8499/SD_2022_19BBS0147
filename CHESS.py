@@ -31,13 +31,20 @@ for i in range(5):
 
 
 
+def printChessBoard(chessBoard):
+    for i in range(len(chessBoard)):
+        for j in range (len(chessBoard[0])):
+            print (str(chessBoard[i][j]).center(8, ' ') , end="")
+        print("\n")
+
+
 
 turn = 0
 
 
 while aPieces>0 and bPieces>0:
     if turn == 0:
-        p1Move = input("Player A's Move").split(":")
+        p1Move = input("Player A's Move: ").split(":")
         aPosition = piecesDict[ "A:" +  p1Move[0]]
         if p1Move[1] == "F" and aPosition[0] - 1 >= 0 and aPosition[0] - 1 <= 4:
             if chessBoard[aPosition[0]-1][aPosition[1]]!=0 and chessBoard[aPosition[0]-1][aPosition[1]].split(":")[0] == "A":
@@ -86,10 +93,10 @@ while aPieces>0 and bPieces>0:
                 piecesDict[ "A:" +  p1Move[0]] = [aPosition[0], aPosition[1]+1]
         
 
-        print(chessBoard)
+        printChessBoard(chessBoard)
         turn  = 1
     else:
-        p2Move = input("Player B's Move").split(":")
+        p2Move = input("Player B's Move: ").split(":")
         bPosition = piecesDict[ "B:" +  p2Move[0]]
         if p2Move[1] == "F" and bPosition[0] + 1 >= 0 and bPosition[0] + 1 <= 4:
             if chessBoard[bPosition[0]+1][bPosition[1]]!=0 and chessBoard[bPosition[0]+1][bPosition[1]].split(":")[0] == "B":
@@ -134,9 +141,7 @@ while aPieces>0 and bPieces>0:
                 chessBoard[bPosition[0] ][bPosition[1] -1 ] = chessBoard[bPosition[0]][bPosition[1]] 
                 chessBoard[bPosition[0]][bPosition[1]] = 0
                 piecesDict[ "B:" +  p2Move[0]] = [bPosition[0], bPosition[1]-1]
-        print(chessBoard)
-
-
+        printChessBoard(chessBoard)
         turn = 0
 
 
